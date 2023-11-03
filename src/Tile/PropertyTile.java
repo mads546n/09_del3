@@ -30,8 +30,7 @@ public class PropertyTile extends Tile{
     @Override
     public void action(Player p, Tile[] tiles) {
         if(!owend){
-            //have(int) method needs to be added in player
-            //if(p.have(price)){
+            if(p.check(price)){
                 owend = true;
                 owendBy = p;
                 if(tiles[partnerLocation].getOwendBy() == p){
@@ -39,17 +38,15 @@ public class PropertyTile extends Tile{
                 }else{
                     rent = price;
                 }
-            //}else{
-                //add lose() method in Player
-                //p.lose();
-            //}
+            }else{
+                p.lose();
+            }
         }else if(p != owendBy){
-            //if(p.have(rent)){
-                //deposit(int) method needs to be added in Player
-                //owendBy.deposit(rent);
-            //}else{
-                //p.lose
-            //}
+            if(p.check(rent)){
+                owendBy.deposit(rent);
+            }else{
+                p.lose();
+            }
         }
     }
 

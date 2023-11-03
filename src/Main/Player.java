@@ -1,6 +1,9 @@
 package Main;
 
 public class Player {
+
+    Die die = new Die(6);
+    
     private String name;
     private int wallet;
 
