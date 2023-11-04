@@ -25,6 +25,14 @@ public class Player {
         }
     }
 
+    public String getName(){
+        return name;
+    }
+
+    public int getWallet(){
+        return wallet;
+    }
+
     public void lose() {
 
     }
