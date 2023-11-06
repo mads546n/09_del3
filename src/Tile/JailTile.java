@@ -4,8 +4,8 @@ import Main.Player;
 
 public class JailTile extends Tile{
 
-    public JailTile(int location) {
-        super(location, "Jail");
+    public JailTile(int location, String icon) {
+        super(location, "Jail", icon);
     }
 
     @Override

@@ -4,8 +4,8 @@ import Main.Player;
 
 public class Chance extends Tile{
 
-    public Chance(int location, String name) {
-        super(location, name);
+    public Chance(int location, String icon) {
+        super(location, "Chance Tile", icon);
     }
 
     @Override

@@ -4,8 +4,8 @@ import Main.Player;
 
 public class NoActionTile extends Tile{
 
-    public NoActionTile(int location, String name) {
-        super(location, name);
+    public NoActionTile(int location, String name, String icon) {
+        super(location, name, icon);
     }
 
     @Override
