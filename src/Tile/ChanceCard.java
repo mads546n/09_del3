@@ -1,8 +1,9 @@
 package Tile;
 import Main.Player;
 
-//import java.util.Arrays;
-import java.util.Random;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class ChanceCard {
     //Generate array with 24 int (to simulate the chance cards order).
@@ -12,34 +13,22 @@ public class ChanceCard {
     //Create a static integer that tracks down the next card in the deck.
     private static int nextCard;
 
-    //Method to randomly sort the the array "order".
-    public static void shuffle(String[] args) { 
-        int[] array = order; 
-        
-        Random rand = new Random(); 
+    //Method to randomly sort the the array "order" and to distinguish array-elements and make sure the same elements don't appear more than once. 
+    public static void shuffle() {
 
-        for (int i = 0; i < array.length; i++) {
-            int randomIndexToSwap = rand.nextInt(array.length);
-            int temporary = array[randomIndexToSwap];
-            array[randomIndexToSwap] = array[i];
-            array[i] = temporary; 
+        for(int i = 0; i < order.length; i++) {
+            order[i] = i+1;
         }
-    }
+        List<Integer> intList = new ArrayList<>();
+        for (int value : order) {
+            intList.add(value);
+        }
 
-    //Method to distinguish array-elements and make sure the same elements don't appear more than once. 
-    public static int findDoubles(int A[], int length) { 
-        for (int i = 0; i < length; i++) {
-            int count = 0; 
-            for (int j = 0; j < length; j++) {
-                if (A[i] == A[j]) {
-                    count++;
-                }
-            }
-            if (count == 0) {
-                return A[i];
-            }
-        }
-        return -1; 
+        Collections.shuffle(intList);
+
+        for (int i = 0; i < order.length; i++) {
+            order[i] = intList.get(i); 
+        } 
     }
 
     //METHOD YET TO BE DEFINED.
