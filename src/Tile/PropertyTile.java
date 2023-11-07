@@ -14,7 +14,7 @@ public class PropertyTile extends Tile{
 
     private Player owendBy;
 
-    public PropertyTile(int location, String name, String icon, int price, int partnerLocation){
+    public PropertyTile(int location, String name, Icon icon, int price, int partnerLocation){
         super(location, name, icon);
         this.price = price;
         this.partnerLocation = partnerLocation;

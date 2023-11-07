@@ -6,11 +6,11 @@ public abstract class Tile {
 
     private int location;
 
-    public final String icon;
+    public Icon icon;
 
     private String name;
 
-        public Tile(int location, String name, String icon){
+    public Tile(int location, String name, Icon icon){
         this.location = location;
         this.name = name;
         this.icon = icon;

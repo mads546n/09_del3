@@ -4,7 +4,7 @@ import Main.Player;
 
 public class JailTile extends Tile{
 
-    public JailTile(int location, String icon) {
+    public JailTile(int location, Icon icon) {
         super(location, "Jail", icon);
     }
 

@@ -1,6 +1,6 @@
 package Tile;
 
 public class TileManeger {
-    private String[] icons = new String[24];
-    public Tile[] Tiles = new Tile[24];
+    public static Icon[] icons = {};
+    public static Tile[] Tiles = new Tile[24];
 }

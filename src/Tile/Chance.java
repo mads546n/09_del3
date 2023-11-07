@@ -4,7 +4,7 @@ import Main.Player;
 
 public class Chance extends Tile{
 
-    public Chance(int location, String icon) {
+    public Chance(int location, Icon icon) {
         super(location, "Chance Tile", icon);
     }
 
