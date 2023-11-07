@@ -14,6 +14,11 @@ public class NoActionTile extends Tile{
     }
 
     @Override
-    public void action(Player p, Tile[] tiles) {}
+    public void action(Player p){
+        icon.moveTo(p.getSymbol());
+    }
+
+    @Override
+    public void doubleRent(){}
     
 }

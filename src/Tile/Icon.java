@@ -17,8 +17,8 @@ public class Icon {
             standing[0] = 'B';
         }else if(p == 'C'){
             standing[1] = 'C';
-        }else if(p == 'M'){
-            standing[2] = 'M';
+        }else if(p == 'R'){
+            standing[2] = 'R';
         }else if(p == 'D'){
             standing[3] = 'D';
         }
@@ -29,7 +29,7 @@ public class Icon {
             standing[0] = ' ';
         }else if(p == 'C'){
             standing[1] = ' ';
-        }else if(p == 'M'){
+        }else if(p == 'R'){
             standing[2] = ' ';
         }else if(p == 'D'){
             standing[3] = ' ';
@@ -45,8 +45,8 @@ public class Icon {
             owner = "  BOAT  ";
         }else if(p == 'C'){
             owner = "  CAT   ";
-        }else if(p == 'M'){
-            owner = "MOTERCAR";
+        }else if(p == 'R'){
+            owner = "RACECAR";
         }else if(p == 'D'){
             owner = "  DOG   ";
         }

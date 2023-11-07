@@ -4,11 +4,11 @@ public class Player {
 
     Die die = new Die(6);
     
-    private String name;
+    private char symbol;
     private int wallet;
 
-    public Player(String name, int wallet) {
-        this.name = name;
+    public Player(char symbol, int wallet) {
+        this.symbol = symbol;
         this.wallet = wallet;
     }
 
@@ -25,8 +25,8 @@ public class Player {
         }
     }
 
-    public String getName(){
-        return name;
+    public char getSymbol(){
+        return symbol;
     }
 
     public int getWallet(){

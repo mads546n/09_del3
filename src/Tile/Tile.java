@@ -26,6 +26,8 @@ public abstract class Tile {
 
     public abstract Player getOwendBy();
 
-    public abstract void action(Player p, Tile[] tiles);
+    public abstract void doubleRent();
+
+    public abstract void action(Player p);
 
 }

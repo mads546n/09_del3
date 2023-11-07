@@ -14,9 +14,13 @@ public class Chance extends Tile{
     }
 
     @Override
-    public void action(Player p, Tile[] tiles) {
+    public void action(Player p) {
+        icon.moveTo(p.getSymbol());
         //landOnChance() method needs to be added in Player
         //p.landOnChance();
     }
+
+    @Override
+    public void doubleRent(){}
     
 }

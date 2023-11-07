@@ -14,9 +14,12 @@ public class JailTile extends Tile{
     }
 
     @Override
-    public void action(Player p, Tile[] tiles) {
+    public void action(Player p) {
         //goToJail() method needs to be added in Player
         //p.goToJail
     }
+
+    @Override
+    public void doubleRent(){}
     
 }

@@ -21,20 +21,23 @@ public class PropertyTile extends Tile{
         owend = false;
     }
 
-    public void doubleOwn(Tile[] tiles, Player p){
-        if(p == owendBy && p == tiles[partnerLocation].getOwendBy()){
-            rent = price*2;
-        }
+    @Override
+    public void doubleRent(){
+        rent = price*2;
     }
 
     @Override
-    public void action(Player p, Tile[] tiles) {
+    public void action(Player p) {
+
+        icon.moveTo(p.getSymbol());
+
         if(!owend){
             if(p.check(price)){
                 owend = true;
                 owendBy = p;
-                if(tiles[partnerLocation].getOwendBy() == p){
-                    rent = price*2;
+                if(TileManeger.tiles[partnerLocation].getOwendBy() == p){
+                    doubleRent();
+                    TileManeger.tiles[partnerLocation].doubleRent();
                 }else{
                     rent = price;
                 }

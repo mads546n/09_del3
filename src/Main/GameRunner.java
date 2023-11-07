@@ -58,10 +58,31 @@ public class GameRunner {
 
         //select names
         players = new Player[nrOfPlayers];
+        boolean[] taken = new boolean[4];
         for(int i = 0; i < nrOfPlayers; i++){
             UI.print(i+1);
-            if(scanner.hasNextLine()){
-                players[i] = new Player(scanner.nextLine(), startValue);
+            loop1:
+            while(scanner.hasNextLine()){
+                String input = scanner.nextLine();
+                if(input.equals("cat") && !taken[0]){
+                    players[i] = new Player('C', startValue);
+                    taken[0] = true;
+                    break loop1;
+                }else if(input.equals("dog") && !taken[1]){
+                    players[i] = new Player('D', startValue);
+                    taken[1] = true;
+                    break loop1;
+                }else if(input.equals("boat") && !taken[2]){
+                    players[i] = new Player('B', startValue);
+                    taken[2] = true;
+                    break loop1;
+                }else if(input.equals("racecar") && !taken[3]){
+                    players[i] = new Player('R', startValue);
+                    taken[3] = true;
+                    break loop1;
+                }else{
+                    UI.print(5);
+                }
             }
         }
         scanner.close();
