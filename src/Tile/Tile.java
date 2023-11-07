@@ -24,6 +24,10 @@ public abstract class Tile {
         return name;
     }
 
+    public void moveFrom(Player p){
+        icon.moveFrom(p.getSymbol());
+    }
+
     public abstract Player getOwendBy();
 
     public abstract void doubleRent();
