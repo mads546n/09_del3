@@ -8,6 +8,7 @@ public class GameRunner {
     static int nrOfPlayers = 2;
     static Player[] players;
     static int startValue = 20;
+    static boolean advancedMode; 
 
     public static void main(String[] args){
 
@@ -15,6 +16,10 @@ public class GameRunner {
 
         for(Player p: players){
             UI.printPlayer(p);
+        }
+        if(advancedMode) {
+            //Temporary test.
+            System.out.print("123"); 
         }
 
         Scanner scanner = new Scanner(System.in);
@@ -84,6 +89,13 @@ public class GameRunner {
                     UI.print(5);
                 }
             }
+        }
+        UI.print(6);
+        if(scanner.nextLine().equals("yes")) {
+            advancedMode = true;
+            UI.print(7);  
+        } else {
+            UI.print(8);
         }
         scanner.close();
     }

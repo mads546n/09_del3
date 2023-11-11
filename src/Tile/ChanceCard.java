@@ -46,7 +46,51 @@ public class ChanceCard {
         //GIVEN CONDITION NOT APPLICABLE
         if (temporary == 0) {
 
-        } else {
+        } else if (temporary == 1) {
+            
+        } else if (temporary == 2) {
+
+        } else if (temporary == 3) {
+
+        } else if (temporary == 4) {
+
+        } else if (temporary == 5) {
+
+        } else if (temporary == 6) {
+
+        } else if (temporary == 7) {
+
+        } else if (temporary == 8) {
+
+        } else if (temporary == 9) {
+
+        } else if (temporary == 10) {
+
+        } else if (temporary == 11) {
+
+        } else if (temporary == 12) {
+
+        } else if (temporary == 13) {
+
+        } else if (temporary == 14) {
+
+        } else if (temporary == 15) {
+
+        } else if (temporary == 16) {
+
+        } else if (temporary == 17) {
+
+        } else if (temporary == 18) {
+
+        } else if (temporary == 19) {
+
+        } else if (temporary == 20) {
+
+        } else if (temporary == 21) {
+
+        } else if (temporary == 22) {
+
+        } else if (temporary == 23) {
 
         }
 
