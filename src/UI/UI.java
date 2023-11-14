@@ -1,6 +1,7 @@
 package UI;
 
 import Main.Player;
+import Tile.TileManeger;
 
 public class UI {
 
@@ -21,6 +22,46 @@ public class UI {
         } else {
             System.out.println("Not a valid card");
         }
+    }
+
+    public static void printBord(){
+        int temp1 = 0;
+        int temp2 = 23;
+        String[][] bord = new String[36][15];
+        for(int i = 0; i < 36; i++){
+            for(int j = 0; j < 15; j++){
+                if(i > 5 && i < 30 && j > 2 && j < 11){
+                    bord[i][j] = "     ";
+                }else if(i > 5 && i < 30 && j > 2 && j < 12){
+                    bord[i][j] = "    ";
+                }else if(i%5 == 0){
+                    bord[i][j] = "-";
+                }else if(j%2 == 0){
+                    bord[i][j] = "|";
+                }else{
+                    if(i == 1 || j == 13){
+                        bord[i][j] = TileManeger.icons[temp1].getLine(0);
+                        bord[i+1][j] = TileManeger.icons[temp1].getLine(1);
+                        bord[i+2][j] = TileManeger.icons[temp1].getLine(2);
+                        bord[i+3][j] = TileManeger.icons[temp1].getLine(3);
+                        temp1++;
+                    }else if(i == 31 || j == 1){
+                        bord[i][j] = TileManeger.icons[temp2].getLine(0);
+                        bord[i+1][j] = TileManeger.icons[temp2].getLine(1);
+                        bord[i+2][j] = TileManeger.icons[temp2].getLine(2);
+                        bord[i+3][j] = TileManeger.icons[temp2].getLine(3);
+                        temp2--;
+                    }
+                }
+            }
+        }
+        for(int i = 0; i < 36; i++){
+            for(int j = 0; j < 15; j++){
+                System.out.print(bord[i][j]);
+            }
+            System.out.println();
+        }
+
     }
 
 }
