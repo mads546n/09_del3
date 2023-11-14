@@ -17,6 +17,7 @@ public class TileManeger {
         new Icon("PARKING", 0),
         new Icon("ARCADE", 3),
         new Icon("CINEMA", 3),
+        new Icon("CHANCE", 0),
         new Icon("TOYSTORE", 3),
         new Icon("PET SHOP", 3),
         new Icon("JAIL", 0),
