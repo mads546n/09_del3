@@ -1,6 +1,7 @@
 package Tile;
+import Main.GameRunner;
 import Main.Player;
-
+import UI.UI;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -31,21 +32,29 @@ public class ChanceCard {
         } 
     }
 
-    //METHOD YET TO BE DEFINED.
-    private static void executeChanceCard(Player p, int x) {
-
-    }
 
     //Method with player object as attribute. The method returns the element in the array assigned as "nextCard". 
-    public static int landOn(Player p) {
+    public static void landOn(Player p) {
         int temporary = order[nextCard];
         nextCard++;
-        executeChanceCard(p, temporary);
 
         //if-else-chain for further development. 
         //GIVEN CONDITION NOT APPLICABLE
         if (temporary == 0) {
 
+            UI.printChance(0);
+
+            for(int i = 0; i < GameRunner.players.length+1; i++){
+
+                if(i < GameRunner.players.length){
+                    p.setChance(0);
+                }
+
+                if(GameRunner.players[i].getName().equals("Racecar")){
+                    GameRunner.players[i].setChance(0);
+                }
+
+            }
         } else if (temporary == 1) {
             
         } else if (temporary == 2) {
@@ -93,8 +102,6 @@ public class ChanceCard {
         } else if (temporary == 23) {
 
         }
-
-        return temporary; 
     }
 
 }

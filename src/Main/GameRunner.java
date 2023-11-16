@@ -3,23 +3,24 @@ package Main;
 import UI.UI;
 import java.util.Scanner;
 
+import Tile.ChanceCard;
 import Tile.TileManeger;
 
 public class GameRunner {
 
     static int nrOfPlayers = 2;
-    static Player[] players;
+    public static Player[] players;
     static int startValue = 20;
     static boolean advancedMode; 
     static int turn = 0;
     static boolean gameOver;
+    public static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args){
 
-        Scanner scanner = new Scanner(System.in);
         scanner.useLocale(java.util.Locale.ENGLISH);
 
-        setUpGame(scanner);
+        setUpGame();
 
         String input;
 
@@ -29,7 +30,7 @@ public class GameRunner {
         while(scanner.hasNextLine()){
             input = scanner.nextLine();
             if(input.equals("roll")){
-                players[turn].roll();
+                players[turn].roll(scanner);
                 if(gameOver){
                     break loop;
                 }
@@ -44,8 +45,9 @@ public class GameRunner {
         }
     }
 
-    public static void setUpGame(Scanner scanner){
+    public static void setUpGame(){
         //select number of playeres
+        ChanceCard.shuffle();
         UI.print(0);
         boolean found = false;
 

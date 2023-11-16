@@ -1,6 +1,11 @@
 package Tile;
 
+import Main.Player;
+
 public class TileManeger {
+    
+    public static final Player canBuy = new Player('x', -1000);
+
     public static Icon[] icons = {
         new Icon("START", 2),
         new Icon("BURGER", 1),

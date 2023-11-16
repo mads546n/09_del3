@@ -20,12 +20,17 @@ public class PropertyTile extends Tile{
         this.price = price;
         this.partnerLocation = partnerLocation;
         owend = false;
+        owendBy = TileManeger.canBuy;
     }
 
     @Override
     public void doubleRent(){
-        rent = price*2;
-        icon.priceUpdate(rent);
+        if(owendBy == TileManeger.tiles[partnerLocation].getOwendBy()){
+            rent = price*2;
+            icon.priceUpdate(rent);
+        }else{
+            rent = price;
+        }
     }
 
     @Override
@@ -39,8 +44,6 @@ public class PropertyTile extends Tile{
                 if(TileManeger.tiles[partnerLocation].getOwendBy() == p){
                     doubleRent();
                     TileManeger.tiles[partnerLocation].doubleRent();
-                }else{
-                    rent = price;
                 }
                 UI.printBord();
                 UI.print(10);
@@ -63,6 +66,24 @@ public class PropertyTile extends Tile{
         }else{
             UI.printBord();
         }
+    }
+
+    @Override
+    public void buyFromPlayer(Player p){
+
+        if(p.check(price)){
+            owendBy.deposit(price);
+            owendBy = p;
+            icon.newOwner(p.getSymbol());
+            doubleRent();
+            TileManeger.tiles[partnerLocation].doubleRent();
+        }else{
+            int temp = p.getWallet();
+            p.deposit(-temp);
+            owendBy.deposit(temp);
+            p.lose();
+        }
+
     }
 
     @Override

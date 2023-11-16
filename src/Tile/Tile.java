@@ -16,6 +16,8 @@ public abstract class Tile {
         this.icon = icon;
     }
 
+    public abstract void buyFromPlayer(Player p);
+
     public int getLocation(){
         return location;
     }

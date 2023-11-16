@@ -21,5 +21,8 @@ public class NoActionTile extends Tile{
 
     @Override
     public void doubleRent(){}
+
+    @Override
+    public void buyFromPlayer(Player p){}
     
 }

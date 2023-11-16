@@ -22,6 +22,9 @@ public class JailTile extends Tile{
     }
 
     @Override
+    public void buyFromPlayer(Player p){}
+
+    @Override
     public void doubleRent(){}
     
 }

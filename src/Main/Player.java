@@ -1,5 +1,6 @@
 package Main;
 
+import java.util.Scanner;
 import Tile.TileManeger;
 import UI.UI;
 
@@ -11,6 +12,7 @@ public class Player {
     private int wallet;
     private String name;
     private int location;
+    private int chanceOnNextTurn;
 
     public Player(char symbol, int wallet) {
         this.symbol = symbol;
@@ -25,6 +27,48 @@ public class Player {
             this.name = "Dog";
         }
         location = 0;
+        chanceOnNextTurn = 100;
+    }
+
+    public void roll(Scanner scanner){
+        if(chanceOnNextTurn == 100){
+            roll();
+        }else if(chanceOnNextTurn == 0){
+            TileManeger.icons[location].moveFrom(symbol);
+            int temp = location;
+            for(int i = 0; i < 23; i++){
+                if(TileManeger.tiles[temp].getOwendBy() == TileManeger.canBuy){
+                    if(temp < location){
+                        wallet = wallet + 2;
+                        UI.print(9);
+                    }
+                    location = temp;
+                    TileManeger.icons[location].moveTo(symbol);
+                    TileManeger.tiles[location].action(this);
+                    UI.print(11, location);
+                    UI.printPlayer(this);
+                    chanceOnNextTurn = 100;
+                }
+                temp++;
+                if(temp == 24){
+                    temp = 0;
+                }
+            }
+            if(chanceOnNextTurn == 0){
+                for(int i = 1; i < 3; i++){
+                    temp = location + i;
+                    if(temp == 24){
+                        temp = 0;
+                    }
+                    if(TileManeger.tiles[temp].getOwendBy() != null){
+                        location = temp;
+                        TileManeger.icons[location].moveTo(symbol);
+                        TileManeger.tiles[location].buyFromPlayer(this);
+                    }
+                }
+                chanceOnNextTurn = 100;
+            }
+        }
     }
 
     public void roll(){
@@ -65,6 +109,10 @@ public class Player {
 
     public String getName(){
         return name;
+    }
+
+    public void setChance(int x){
+        chanceOnNextTurn = x;
     }
 
     public void lose() {
