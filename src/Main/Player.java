@@ -13,6 +13,7 @@ public class Player {
     private String name;
     private int location;
     private int chanceOnNextTurn;
+    private int hasOutOfJailCard;
 
     public Player(char symbol, int wallet) {
         this.symbol = symbol;
@@ -30,9 +31,10 @@ public class Player {
         chanceOnNextTurn = 100;
     }
 
-    public void roll(Scanner scanner){
+    public void roll(){
         if(chanceOnNextTurn == 100){
-            roll();
+            int roll = die.rollDie();
+            roll(roll);
         }else if(chanceOnNextTurn == 0){
             TileManeger.icons[location].moveFrom(symbol);
             int temp = location;
@@ -71,9 +73,8 @@ public class Player {
         }
     }
 
-    public void roll(){
+    public void roll(int roll){
         TileManeger.icons[location].moveFrom(symbol);
-        int roll = die.rollDie();
         location = location + roll;
         if(location > 23){
             location = location - 24;
@@ -97,6 +98,20 @@ public class Player {
             wallet -= amount; 
             return true;
         }
+    }
+
+    public void getsJailCard(){
+        hasOutOfJailCard++;
+    }
+
+    public void moveToStart(){
+        location = 0;
+        wallet = wallet + 2;
+        UI.print(9);
+    }
+
+    public int getLocation(){
+        return location;
     }
 
     public char getSymbol(){

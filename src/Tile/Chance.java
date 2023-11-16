@@ -17,8 +17,7 @@ public class Chance extends Tile{
     @Override
     public void action(Player p) {
         UI.printBord();
-        //landOnChance() method needs to be added in Player
-        //p.landOnChance();
+        ChanceCard.landOn(p);
     }
 
     @Override
