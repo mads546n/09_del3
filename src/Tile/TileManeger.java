@@ -27,6 +27,7 @@ public class TileManeger {
         new Icon("WATERPK:", 5),
         new Icon("BEACH", 5), 
     };
+
     public static Tile[] tiles = {
         new NoActionTile(0, "Start", icons[0]),
         new PropertyTile(1, "Burgerbar", icons[1], 1, 2),

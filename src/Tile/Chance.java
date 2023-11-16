@@ -1,6 +1,7 @@
 package Tile;
 
 import Main.Player;
+import UI.UI;
 
 public class Chance extends Tile{
 
@@ -15,7 +16,7 @@ public class Chance extends Tile{
 
     @Override
     public void action(Player p) {
-        icon.moveTo(p.getSymbol());
+        UI.printBord();
         //landOnChance() method needs to be added in Player
         //p.landOnChance();
     }

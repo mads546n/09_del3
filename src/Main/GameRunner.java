@@ -3,40 +3,48 @@ package Main;
 import UI.UI;
 import java.util.Scanner;
 
+import Tile.TileManeger;
+
 public class GameRunner {
 
     static int nrOfPlayers = 2;
     static Player[] players;
     static int startValue = 20;
     static boolean advancedMode; 
+    static int turn = 0;
+    static boolean gameOver;
 
     public static void main(String[] args){
 
-        setUpGame();
-
-        for(Player p: players){
-            UI.printPlayer(p);
-        }
-        if(advancedMode) {
-            //Temporary test.
-            System.out.print("123"); 
-        }
-
         Scanner scanner = new Scanner(System.in);
         scanner.useLocale(java.util.Locale.ENGLISH);
+
+        setUpGame(scanner);
+
         String input;
 
-        while (scanner.hasNextLine()){
+        UI.print(players[turn]);
 
+        loop:
+        while(scanner.hasNextLine()){
             input = scanner.nextLine();
-
+            if(input.equals("roll")){
+                players[turn].roll();
+                if(gameOver){
+                    break loop;
+                }
+                nextTurn();
+                UI.print( players[turn]);
+            }
         }
         scanner.close();
+
+        for(int i = 0; i < nrOfPlayers; i++){
+            UI.printPlayer(players[i]);
+        }
     }
 
-    public static void setUpGame(){
-        Scanner scanner = new Scanner(System.in);
-        scanner.useLocale(java.util.Locale.ENGLISH);
+    public static void setUpGame(Scanner scanner){
         //select number of playeres
         UI.print(0);
         boolean found = false;
@@ -90,6 +98,11 @@ public class GameRunner {
                 }
             }
         }
+
+        for(int i = 0; i < nrOfPlayers; i++){
+            TileManeger.icons[0].moveTo(players[i].getSymbol());
+        }
+
         UI.print(6);
         if(scanner.nextLine().equals("yes")) {
             advancedMode = true;
@@ -97,7 +110,13 @@ public class GameRunner {
         } else {
             UI.print(8);
         }
-        scanner.close();
+    }
+
+    public static void nextTurn(){
+        turn++;
+        if(turn == nrOfPlayers){
+            turn = 0;
+        }
     }
     
 }

@@ -46,7 +46,7 @@ public class Icon {
         }else if(p == 'C'){
             owner = "  CAT   ";
         }else if(p == 'R'){
-            owner = "RACECAR";
+            owner = "RACECAR ";
         }else if(p == 'D'){
             owner = "  DOG   ";
         }

@@ -1,6 +1,7 @@
 package Tile;
 
 import Main.Player;
+import UI.UI;
 
 public class PropertyTile extends Tile{
 
@@ -24,32 +25,43 @@ public class PropertyTile extends Tile{
     @Override
     public void doubleRent(){
         rent = price*2;
+        icon.priceUpdate(rent);
     }
 
     @Override
     public void action(Player p) {
 
-        icon.moveTo(p.getSymbol());
-
         if(!owend){
             if(p.check(price)){
                 owend = true;
                 owendBy = p;
+                icon.newOwner(p.getSymbol());
                 if(TileManeger.tiles[partnerLocation].getOwendBy() == p){
                     doubleRent();
                     TileManeger.tiles[partnerLocation].doubleRent();
                 }else{
                     rent = price;
                 }
+                UI.printBord();
+                UI.print(10);
             }else{
+                int temp = p.getWallet();
+                p.deposit(-temp);
                 p.lose();
             }
         }else if(p != owendBy){
             if(p.check(rent)){
                 owendBy.deposit(rent);
+                UI.printBord();
+                UI.print(11);
             }else{
+                int temp = p.getWallet();
+                p.deposit(-temp);
+                owendBy.deposit(temp);
                 p.lose();
             }
+        }else{
+            UI.printBord();
         }
     }
 

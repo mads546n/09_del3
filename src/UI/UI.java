@@ -5,15 +5,28 @@ import Tile.TileManeger;
 
 public class UI {
 
-    private static final String[] text = {"Welcome to monopoly. You can play with 2 to 4 players, how many players are playing?", "Player 1 what charektor do you wanna be?", "Player 2 what charektor do you wanna be?", "Player 3 what charektor do you wanna be?", "Player 4 what charektor do you wanna be?", "oh oh that diddnt work", "Do you want to run the game in Advanced Mode?", "Now running the game in Advanced Mode", "Now running the game in Regular Mode"};
+    private static final String[] text = {"Welcome to monopoly. You can play with 2 to 4 players, how many players are playing?", "Player 1 what charektor do you wanna be?", "Player 2 what charektor do you wanna be?", "Player 3 what charektor do you wanna be?", "Player 4 what charektor do you wanna be?", "oh oh that diddnt work", "Do you want to run the game in Advanced Mode?", "Now running the game in Advanced Mode", "Now running the game in Regular Mode","You have passed start and get 2M","You now own this Tile","You gatta pay rent"};
     private static final String[] chanceCard = {"test1", "test2", "test3", "test4", "test5", "test6", "test7", "test8", "test9", "test10", "test11", "test12", "test13", "test14", "test15", "test16", "test17", "test18", "test19", "test20", "test21", "test22", "test23", "test24", };
 
     public static void print(int x){
         System.out.println(text[x]);
     }
 
+    public static void printL(){
+        System.out.println("You cant pay and you lose");
+    }
+
+    public static void print(int x, int loc){
+        System.out.println("You landed on "+TileManeger.tiles[loc].getName());
+    }
+
+    public static void print(Player p){
+        String name = p.getName();
+        System.out.println(name+" Your turn to roll, write 'roll'");
+    }
+
     public static void printPlayer(Player p){
-        System.out.println(p.getSymbol() +" has a wallet of "+p.getWallet());
+        System.out.println(p.getName() +" has a wallet of "+p.getWallet());
     }
     
     public static void printChance(int x) {
