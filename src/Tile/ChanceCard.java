@@ -50,10 +50,12 @@ public class ChanceCard {
 
             UI.printChance(0);
 
+            loop:
             for(int i = 0; i < GameRunner.players.length+1; i++){
 
                 if(i < GameRunner.players.length){
                     p.setChance(0);
+                    break loop;
                 }
 
                 if(GameRunner.players[i].getName().equals("Racecar")){
@@ -117,10 +119,12 @@ public class ChanceCard {
 
             UI.printChance(5);
 
+            loop:
             for(int i = 0; i < GameRunner.players.length+1; i++){
 
                 if(i < GameRunner.players.length){
                     p.setChance(0);
+                    break loop;
                 }
 
                 if(GameRunner.players[i].getName().equals("Boat")){
@@ -224,10 +228,12 @@ public class ChanceCard {
 
             UI.printChance(0);
 
+            loop:
             for(int i = 0; i < GameRunner.players.length+1; i++){
 
                 if(i < GameRunner.players.length){
                     p.setChance(0);
+                    break loop;
                 }
 
                 if(GameRunner.players[i].getName().equals("Cat")){
@@ -238,12 +244,14 @@ public class ChanceCard {
 
         } else if (temporary == 12) {
 
-            UI.printChance(0);
+            UI.printChance(12);
 
+            loop:
             for(int i = 0; i < GameRunner.players.length+1; i++){
 
                 if(i < GameRunner.players.length){
                     p.setChance(0);
+                    break loop;
                 }
 
                 if(GameRunner.players[i].getName().equals("Dog")){
