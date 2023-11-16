@@ -27,6 +27,11 @@ public class UI {
 
     public static void printPlayer(Player p){
         System.out.println(p.getName() +" has a wallet of "+p.getWallet());
+        for(int i = 0; i < 24; i++){
+            if(TileManeger.tiles[i].getOwendBy() == p){
+                System.out.println(p.getName() + " owns " + TileManeger.tiles[i].getName());
+            }
+        }
     }
     
     public static void printChance(int x) {
