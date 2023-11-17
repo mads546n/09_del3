@@ -1,7 +1,6 @@
 package Tile;
 
 import Main.Player;
-import UI.UI;
 
 public class PropertyTile extends Tile{
 
@@ -41,12 +40,9 @@ public class PropertyTile extends Tile{
                 owend = true;
                 owendBy = p;
                 icon.newOwner(p.getSymbol());
-                if(TileManeger.tiles[partnerLocation].getOwendBy() == p){
-                    doubleRent();
-                    TileManeger.tiles[partnerLocation].doubleRent();
-                }
-                UI.printBord();
-                UI.print(10);
+                doubleRent();
+                TileManeger.tiles[partnerLocation].doubleRent();
+                p.buyTile();
             }else{
                 int temp = p.getWallet();
                 p.deposit(-temp);
@@ -55,16 +51,13 @@ public class PropertyTile extends Tile{
         }else if(p != owendBy){
             if(p.check(rent)){
                 owendBy.deposit(rent);
-                UI.printBord();
-                UI.print(11);
+                p.payedRent();
             }else{
                 int temp = p.getWallet();
                 p.deposit(-temp);
                 owendBy.deposit(temp);
                 p.lose();
             }
-        }else{
-            UI.printBord();
         }
     }
 
@@ -77,6 +70,7 @@ public class PropertyTile extends Tile{
             icon.newOwner(p.getSymbol());
             doubleRent();
             TileManeger.tiles[partnerLocation].doubleRent();
+            p.buyTile();
         }else{
             int temp = p.getWallet();
             p.deposit(-temp);

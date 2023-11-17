@@ -1,7 +1,6 @@
 package Tile;
 
 import Main.Player;
-import UI.UI;
 
 public class Chance extends Tile{
 
@@ -16,7 +15,6 @@ public class Chance extends Tile{
 
     @Override
     public void action(Player p) {
-        UI.printBord();
         ChanceCard.landOn(p);
     }
 

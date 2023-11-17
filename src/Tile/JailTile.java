@@ -1,7 +1,6 @@
 package Tile;
 
 import Main.Player;
-import UI.UI;
 
 public class JailTile extends Tile{
 
@@ -16,9 +15,8 @@ public class JailTile extends Tile{
 
     @Override
     public void action(Player p) {
-        UI.printBord();
-        //goToJail() method needs to be added in Player
-        //p.goToJail
+        p.goToJail();
+        p.roll(-12);
     }
 
     @Override

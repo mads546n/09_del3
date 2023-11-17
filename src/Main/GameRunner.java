@@ -31,6 +31,7 @@ public class GameRunner {
             input = scanner.nextLine();
             if(input.equals("roll")){
                 players[turn].roll();
+                players[turn].printTurn();
                 if(gameOver){
                     break loop;
                 }

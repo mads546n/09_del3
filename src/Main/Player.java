@@ -1,6 +1,7 @@
 package Main;
 
-import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
 import Tile.TileManeger;
 import UI.UI;
 
@@ -12,8 +13,14 @@ public class Player {
     private int wallet;
     private String name;
     private int location;
-    private int chanceOnNextTurn;
+    private boolean chanceOnNextTurn;
     private int hasOutOfJailCard;
+    private boolean inJail;
+    private boolean passedStart;
+    private boolean payedRent;
+    private boolean buyTile;
+    private List<Integer> msg = new ArrayList<>();
+    private int dieroll;
 
     public Player(char symbol, int wallet) {
         this.symbol = symbol;
@@ -28,35 +35,91 @@ public class Player {
             this.name = "Dog";
         }
         location = 0;
-        chanceOnNextTurn = 100;
+        chanceOnNextTurn = false;
+    }
+
+    public void printTurn(){
+
+        UI.printBord();
+
+        if(dieroll != 0){
+            UI.printDieRoll(dieroll);
+            dieroll = 0;
+        }
+
+        if(passedStart){
+            UI.print(9);
+            passedStart = false;
+        }
+        if(msg.size() != 0){
+            for(int i = 0; i < msg.size(); i++){
+                UI.printChance(msg.get(i));
+            }
+            msg = new ArrayList<>();
+        }
+        if(inJail){
+           UI.print(13); 
+        }else{
+            UI.print(11, location);
+        }
+
+        if(payedRent){
+            UI.print(11);
+            payedRent = false;
+        }else if(buyTile){
+            UI.print(10);
+            buyTile = false;
+        }
+
+        UI.printPlayer(this);
+
     }
 
     public void roll(){
-        if(chanceOnNextTurn == 100){
+        if(inJail){
+            if(hasOutOfJailCard > 0){
+                UI.print(12);
+                inJail = false;
+                hasOutOfJailCard--;
+                int roll = die.rollDie();
+                dieroll = roll;
+                roll(roll);
+            }else if(wallet > 0){
+                UI.print(13);
+                if(GameRunner.scanner.hasNextLine()){
+                    String input = GameRunner.scanner.nextLine();
+                    if(input.equals("yes")){
+                        wallet--;
+                        inJail = false;
+                        hasOutOfJailCard--;
+                        int roll = die.rollDie();
+                        dieroll = roll;
+                        roll(roll);
+                    }
+                }
+            }
+        }else if(!chanceOnNextTurn){
             int roll = die.rollDie();
+            dieroll = roll;
             roll(roll);
-        }else if(chanceOnNextTurn == 0){
+        }else if(chanceOnNextTurn){
             TileManeger.icons[location].moveFrom(symbol);
             int temp = location;
+            loop:
             for(int i = 0; i < 23; i++){
                 if(TileManeger.tiles[temp].getOwendBy() == TileManeger.canBuy){
-                    if(temp < location){
-                        wallet = wallet + 2;
-                        UI.print(9);
-                    }
                     location = temp;
-                    TileManeger.icons[location].moveTo(symbol);
-                    TileManeger.tiles[location].action(this);
-                    UI.print(11, location);
-                    UI.printPlayer(this);
-                    chanceOnNextTurn = 100;
+                    chanceOnNextTurn = false;
+                    roll(0);
+                    break loop;
                 }
                 temp++;
                 if(temp == 24){
                     temp = 0;
                 }
             }
-            if(chanceOnNextTurn == 0){
+            if(chanceOnNextTurn){
+                loop:
                 for(int i = 1; i < 3; i++){
                     temp = location + i;
                     if(temp == 24){
@@ -66,9 +129,10 @@ public class Player {
                         location = temp;
                         TileManeger.icons[location].moveTo(symbol);
                         TileManeger.tiles[location].buyFromPlayer(this);
+                        chanceOnNextTurn = false;
+                        break loop;
                     }
                 }
-                chanceOnNextTurn = 100;
             }
         }
     }
@@ -79,12 +143,10 @@ public class Player {
         if(location > 23){
             location = location - 24;
             wallet = wallet + 2;
-            UI.print(9);
+            passedStart();
         }
         TileManeger.icons[location].moveTo(symbol);
         TileManeger.tiles[location].action(this);
-        UI.print(11, location);
-        UI.printPlayer(this);
     }
 
     public void deposit(int amount) {
@@ -95,7 +157,7 @@ public class Player {
         if(wallet < amount) {
             return false;
         } else {
-            wallet -= amount; 
+            wallet = wallet - amount; 
             return true;
         }
     }
@@ -107,7 +169,7 @@ public class Player {
     public void moveToStart(){
         location = 0;
         wallet = wallet + 2;
-        UI.print(9);
+        passedStart();
     }
 
     public int getLocation(){
@@ -127,7 +189,27 @@ public class Player {
     }
 
     public void setChance(int x){
-        chanceOnNextTurn = x;
+        chanceOnNextTurn = true;
+    }
+
+    public void goToJail(){
+        inJail = true;
+    }
+
+    public void passedStart(){
+        passedStart = true;
+    }
+
+    public void payedRent(){
+        payedRent = true;
+    }
+
+    public void buyTile(){
+        buyTile = true;
+    }
+
+    public void chanceMsg(int i){
+        msg.add(i);
     }
 
     public void lose() {
