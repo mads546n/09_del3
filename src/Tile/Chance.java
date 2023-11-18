@@ -15,7 +15,7 @@ public class Chance extends Tile{
 
     @Override
     public void action(Player p) {
-        ChanceCard.landOn(p);
+        while(ChanceCard.landOn(p)){}
     }
 
     @Override

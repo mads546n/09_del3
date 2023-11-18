@@ -103,35 +103,37 @@ public class Player {
             dieroll = roll;
             roll(roll);
         }else if(chanceOnNextTurn){
-            TileManeger.icons[location].moveFrom(symbol);
-            int temp = location;
-            loop:
-            for(int i = 0; i < 23; i++){
-                if(TileManeger.tiles[temp].getOwendBy() == TileManeger.canBuy){
-                    location = temp;
-                    chanceOnNextTurn = false;
-                    roll(0);
-                    break loop;
-                }
-                temp++;
-                if(temp == 24){
-                    temp = 0;
-                }
-            }
-            if(chanceOnNextTurn){
-                loop:
-                for(int i = 1; i < 3; i++){
-                    temp = location + i;
-                    if(temp == 24){
-                        temp = 0;
+            UI.printChance(20);
+            int input;
+            inputloop:
+            while(GameRunner.scanner.hasNextInt()){
+                int roll = 0;
+                input = GameRunner.scanner.nextInt();
+                if(TileManeger.tiles[input-1].getOwendBy() == TileManeger.canBuy){
+                    roll = (input-1) - location;
+                }else{
+                    boolean freeSpot = false;
+                    loop:
+                    for(int i = 0; i < 24; i++){
+                        if(TileManeger.tiles[i].getOwendBy() == TileManeger.canBuy){
+                            freeSpot = true;
+                            break loop;
+                        }
                     }
-                    if(TileManeger.tiles[temp].getOwendBy() != null){
-                        location = temp;
-                        TileManeger.icons[location].moveTo(symbol);
-                        TileManeger.tiles[location].buyFromPlayer(this);
-                        chanceOnNextTurn = false;
-                        break loop;
+                    if(!freeSpot){
+                        if(TileManeger.tiles[input-1].getOwendBy() != null){
+                            TileManeger.tiles[input-1].buyFromPlayer(this);
+                            buyTile = true;
+                            roll = (input-1) - location;
+                        }
                     }
+                if(roll < 0){
+                    roll = roll - 24;
+                }
+                if(roll != 0){
+                    roll(roll);
+                    break inputloop;
+                }
                 }
             }
         }

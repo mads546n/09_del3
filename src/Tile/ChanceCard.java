@@ -18,7 +18,7 @@ public class ChanceCard {
     public static void shuffle() {
 
         for(int i = 0; i < order.length; i++) {
-            order[i] = i+1;
+            order[i] = i;
         }
         List<Integer> intList = new ArrayList<>();
         for (int value : order) {
@@ -36,9 +36,10 @@ public class ChanceCard {
 
 
     //Method with player object as attribute. The method returns the element in the array assigned as "nextCard". 
-    public static void landOn(Player p) {
+    public static boolean landOn(Player p) {
         int temporary = order[nextCard];
         nextCard++;
+        boolean r = false;
 
         if(nextCard == 20){
             shuffle();
@@ -51,7 +52,7 @@ public class ChanceCard {
             loop:
             for(int i = 0; i < GameRunner.players.length+1; i++){
 
-                if(i < GameRunner.players.length){
+                if(i > GameRunner.players.length){
                     p.setChance(0);
                     break loop;
                 }
@@ -59,7 +60,7 @@ public class ChanceCard {
                 if(GameRunner.players[i].getName().equals("Racecar")){
                     GameRunner.players[i].setChance(0);
                     if(GameRunner.players[i] != p){
-                        landOn(p);
+                        r = true;
                     }
                     break loop;
                 }
@@ -101,7 +102,7 @@ public class ChanceCard {
         } else if (temporary == 3) {
 
             p.printTurn();
-            UI.printChance(8);
+            UI.printChance(3);
             String input;
             int temp = 0;
             loop:
@@ -136,7 +137,7 @@ public class ChanceCard {
             if(GameRunner.scanner.hasNextLine()){
                 String input = GameRunner.scanner.nextLine();
                 if(input.equals("yes")){
-                    landOn(p);
+                    r = true;
                 }else{
                     p.roll(1);
                 }
@@ -149,7 +150,7 @@ public class ChanceCard {
             loop:
             for(int i = 0; i < GameRunner.players.length+1; i++){
 
-                if(i < GameRunner.players.length){
+                if(i > GameRunner.players.length){
                     p.setChance(0);
                     break loop;
                 }
@@ -157,7 +158,7 @@ public class ChanceCard {
                 if(GameRunner.players[i].getName().equals("Boat")){
                     GameRunner.players[i].setChance(0);
                     if(GameRunner.players[i] != p){
-                        landOn(p);
+                        r = true;
                     }
                     break loop;
                 }
@@ -262,7 +263,7 @@ public class ChanceCard {
             loop:
             for(int i = 0; i < GameRunner.players.length+1; i++){
 
-                if(i < GameRunner.players.length){
+                if(i > GameRunner.players.length){
                     p.setChance(0);
                     break loop;
                 }
@@ -270,7 +271,7 @@ public class ChanceCard {
                 if(GameRunner.players[i].getName().equals("Cat")){
                     GameRunner.players[i].setChance(0);
                     if(GameRunner.players[i] != p){
-                        landOn(p);
+                        r = true;
                     }
                     break loop;
                 }
@@ -283,7 +284,7 @@ public class ChanceCard {
             loop:
             for(int i = 0; i < GameRunner.players.length+1; i++){
 
-                if(i < GameRunner.players.length){
+                if(i > GameRunner.players.length){
                     p.setChance(0);
                     break loop;
                 }
@@ -291,7 +292,7 @@ public class ChanceCard {
                 if(GameRunner.players[i].getName().equals("Dog")){
                     GameRunner.players[i].setChance(0);
                     if(GameRunner.players[i] != p){
-                        landOn(p);
+                        r = true;
                     }
                     break loop;
                 }
@@ -476,5 +477,6 @@ public class ChanceCard {
                 }
             }
         }
+        return r;
     }
 }
