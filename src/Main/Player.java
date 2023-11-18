@@ -127,13 +127,13 @@ public class Player {
                             roll = (input-1) - location;
                         }
                     }
+                }
                 if(roll < 0){
-                    roll = roll - 24;
+                    roll = roll + 24;
                 }
                 if(roll != 0){
                     roll(roll);
                     break inputloop;
-                }
                 }
             }
         }
