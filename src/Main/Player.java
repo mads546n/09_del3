@@ -162,7 +162,8 @@ public class Player {
         if(wallet < amount) {
             return lose(amount, p);
         } else {
-            wallet = wallet - amount; 
+            wallet = wallet - amount;
+            p.deposit(amount);
             return true;
         }
     }
