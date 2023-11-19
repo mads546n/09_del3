@@ -168,7 +168,9 @@ public class Player {
     }
 
     public void moveToStart(){
+        TileManeger.icons[location].moveFrom(symbol);
         location = 0;
+        TileManeger.icons[location].moveTo(symbol);
         passedStart();
     }
 
