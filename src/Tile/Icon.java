@@ -52,6 +52,10 @@ public class Icon {
         }
     }
 
+    public void newOwner(){
+        owner = "        ";
+    }
+
     public String getLine(int x){
 
         String nameSpace = "";

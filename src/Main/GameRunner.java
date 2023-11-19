@@ -31,22 +31,61 @@ public class GameRunner {
             input = scanner.nextLine();
             if(input.equals("roll")){
                 players[turn].roll();
-                players[turn].printTurn();
                 if(gameOver){
                     break loop;
+                }else{
+                    players[turn].printTurn();
                 }
                 nextTurn();
-                UI.print( players[turn]);
+                UI.print(players[turn]);
             }
         }
         scanner.close();
+        showWinner();
+    }
+
+    private static int[] findWinner(){
+        int w = 0;
+        int tie = 0;
+        for(int i = 0; i < nrOfPlayers; i++){
+            if(players[i].getWallet() > players[w].getWallet()){
+                w = i;
+            }
+        }
 
         for(int i = 0; i < nrOfPlayers; i++){
-            UI.printPlayer(players[i]);
+            if(i != w){
+                if(players[i].getWallet() == players[w].getWallet()){
+                    tie++;
+                }
+            }
+        }
+        int[] r = {w,tie};
+        return r;
+    }
+
+    private static void showWinner(){
+        int[] w = findWinner();
+
+        if(w[1] > 0){
+            UI.print(15);
+            for(int i = 0; i < 24; i++){
+                if(TileManeger.tiles[i].getOwendBy() != null && TileManeger.tiles[i].getOwendBy() != TileManeger.canBuy){
+                    TileManeger.tiles[i].buyFromPlayer(null);                    
+                    TileManeger.tiles[i].getOwendBy().deposit(TileManeger.tiles[i].getPrice());
+                }
+            }
+            w = findWinner();
+        }
+
+        if(w[1] > 0){
+            UI.printWinner(w);
+        }else{
+            UI.printWinner(w[0]);
         }
     }
 
-    public static void setUpGame(){
+    private static void setUpGame(){
         //select number of playeres
         ChanceCard.shuffle();
         UI.print(0);

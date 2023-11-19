@@ -58,7 +58,7 @@ public class Player {
             msg = new ArrayList<>();
         }
         if(inJail){
-           UI.print(13); 
+           UI.print(14); 
         }else{
             UI.print(11, location);
         }
@@ -84,19 +84,13 @@ public class Player {
                 int roll = die.rollDie();
                 dieroll = roll;
                 roll(roll);
-            }else if(wallet > 0){
+            }else if(check(1, null)){
                 UI.print(13);
-                if(GameRunner.scanner.hasNextLine()){
-                    String input = GameRunner.scanner.nextLine();
-                    if(input.equals("yes")){
-                        wallet--;
-                        inJail = false;
-                        hasOutOfJailCard--;
-                        int roll = die.rollDie();
-                        dieroll = roll;
-                        roll(roll);
-                    }
-                }
+                inJail = false;
+                hasOutOfJailCard--;
+                int roll = die.rollDie();
+                dieroll = roll;
+                roll(roll);   
             }
         }else if(!chanceOnNextTurn){
             int roll = die.rollDie();
@@ -147,7 +141,6 @@ public class Player {
         location = location + roll;
         if(location > 23){
             location = location - 24;
-            wallet = wallet + 2;
             passedStart();
         }
         TileManeger.icons[location].moveTo(symbol);
@@ -176,7 +169,6 @@ public class Player {
 
     public void moveToStart(){
         location = 0;
-        wallet = wallet + 2;
         passedStart();
     }
 
@@ -201,10 +193,14 @@ public class Player {
     }
 
     public void goToJail(){
+        TileManeger.icons[location].moveFrom(symbol);
+        location = 6;
+        TileManeger.icons[location].moveTo(symbol);
         inJail = true;
     }
 
     public void passedStart(){
+        wallet = wallet + 2;
         passedStart = true;
     }
 
@@ -222,7 +218,7 @@ public class Player {
 
     public boolean lose(int amount, Player p) {
         UI.printBord();
-        UI.printL();
+        UI.printL(this, p);
         if(!GameRunner.advancedMode){
             p.deposit(wallet);
             wallet = 0;
@@ -254,8 +250,7 @@ public class Player {
                             }
                         }else{
                             UI.print(5);
-                            UI.owe(amount-assets);
-                            UI.printL();
+                            UI.printL(this, p);
                             break loop;
                         }
                         UI.owe(amount-assets);
@@ -263,13 +258,13 @@ public class Player {
                 }else if(strInput.equals("no")){
                     GameRunner.gameOver = true;
                     GameRunner.advancedMode = false;
-                    UI.printL();
+                    UI.printL(this, p);
                     return false;
                 }
             }
             GameRunner.gameOver = true;
             GameRunner.advancedMode = false;
-            UI.printL();
+            UI.printL(this, p);
             return false;
         }
     }

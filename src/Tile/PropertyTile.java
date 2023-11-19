@@ -45,7 +45,9 @@ public class PropertyTile extends Tile{
                 p.buyTile();
             }
         }else if(p != owendBy){
-            p.check(rent, owendBy);
+            if(p.check(rent, owendBy)){
+                p.payedRent();
+            }
         }
     }
 
@@ -59,6 +61,9 @@ public class PropertyTile extends Tile{
         }else{
             owend = false;
             owendBy = TileManeger.canBuy;
+            doubleRent();
+            TileManeger.tiles[partnerLocation].doubleRent();
+            icon.newOwner();
         }
     }
 

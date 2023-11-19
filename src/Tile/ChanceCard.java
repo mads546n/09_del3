@@ -297,6 +297,7 @@ public class ChanceCard {
         } else if (temporary == 13) {
 
             p.chanceMsg(13);
+            UI.printChance(13);
             int temp = GameRunner.players.length-1;
 
             for(int i = 0; i < GameRunner.players.length; i++){

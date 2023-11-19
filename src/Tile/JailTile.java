@@ -16,7 +16,6 @@ public class JailTile extends Tile{
     @Override
     public void action(Player p) {
         p.goToJail();
-        p.roll(-12);
     }
 
     @Override
