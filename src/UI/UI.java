@@ -1,5 +1,6 @@
 package UI;
 
+import Main.GameRunner;
 import Main.Player;
 import Tile.TileManeger;
 
@@ -13,11 +14,19 @@ public class UI {
     }
 
     public static void printL(){
-        System.out.println("You cant pay and you lose");
+        if(!GameRunner.advancedMode){
+            System.out.println("You cant pay and you lose");
+        }else{
+            System.out.println("You dont have money to pay!! Do you wanna sell some propety to make up the money?");
+        }
     }
 
     public static void print(int x, int loc){
         System.out.println("You landed on "+TileManeger.tiles[loc].getName());
+    }
+
+    public static void owe(int x){
+        System.out.println("You owe "+x+"M, write the the number of the tile you would like to sell");
     }
 
     public static void print(Player p){

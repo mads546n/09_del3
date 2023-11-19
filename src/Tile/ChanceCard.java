@@ -68,7 +68,6 @@ public class ChanceCard {
         } else if (temporary == 1) {
 
             p.chanceMsg(1);
-            p.printTurn();
             p.moveToStart();
             
         } else if (temporary == 2) {
@@ -168,10 +167,7 @@ public class ChanceCard {
 
             p.chanceMsg(6);
             
-            if(!p.check(2)){
-                p.deposit(-p.getWallet());
-                p.lose();
-            }
+            p.check(2, null);
 
         } else if (temporary == 7) {
 
@@ -305,8 +301,7 @@ public class ChanceCard {
 
             for(int i = 0; i < GameRunner.players.length; i++){
                 if(GameRunner.players[i] != p){
-                    if(!GameRunner.players[i].check(1)){
-                        p.lose();
+                    if(!GameRunner.players[i].check(1, p)){
                         temp--;
                     }
                 }

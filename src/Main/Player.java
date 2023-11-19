@@ -103,6 +103,7 @@ public class Player {
             dieroll = roll;
             roll(roll);
         }else if(chanceOnNextTurn){
+            chanceOnNextTurn = false;
             UI.printChance(20);
             int input;
             inputloop:
@@ -122,8 +123,10 @@ public class Player {
                     }
                     if(!freeSpot){
                         if(TileManeger.tiles[input-1].getOwendBy() != null){
-                            TileManeger.tiles[input-1].buyFromPlayer(this);
-                            buyTile = true;
+                            if(check(TileManeger.tiles[input-1].getPrice(),TileManeger.tiles[input-1].getOwendBy())){
+                                TileManeger.tiles[input-1].buyFromPlayer(this);
+                                buyTile = true;
+                            }
                             roll = (input-1) - location;
                         }
                     }
@@ -155,9 +158,9 @@ public class Player {
         wallet += amount;
     }
 
-    public boolean check(int amount) {
+    public boolean check(int amount, Player p) {
         if(wallet < amount) {
-            return false;
+            return lose(amount, p);
         } else {
             wallet = wallet - amount; 
             return true;
@@ -214,9 +217,58 @@ public class Player {
         msg.add(i);
     }
 
-    public void lose() {
+    public boolean lose(int amount, Player p) {
+        UI.printBord();
         UI.printL();
-        GameRunner.gameOver = true;
+        if(!GameRunner.advancedMode){
+            p.deposit(wallet);
+            wallet = 0;
+            GameRunner.gameOver = true;
+            return false;
+        }else{
+            int assets = wallet;
+            wallet = 0;
+            if(p != null){
+                p.deposit(amount);
+            }
+            String strInput;
+            int intInput;
+            while(GameRunner.scanner.hasNextLine()){
+                strInput = GameRunner.scanner.nextLine();
+                loop:
+                if(strInput.equals("yes")){
+                    UI.owe(amount-assets);
+                    while(GameRunner.scanner.hasNextInt()){
+                        intInput = GameRunner.scanner.nextInt()-1;
+                        if(TileManeger.tiles[intInput].getOwendBy() == this){
+                            assets = assets + TileManeger.tiles[intInput].getPrice();
+                            TileManeger.tiles[intInput].buyFromPlayer(p);
+                            if(assets >= amount){
+                                if(p == null){
+                                    deposit(assets-amount);
+                                }
+                                return true;
+                            }
+                        }else{
+                            UI.print(5);
+                            UI.owe(amount-assets);
+                            UI.printL();
+                            break loop;
+                        }
+                        UI.owe(amount-assets);
+                    }
+                }else if(strInput.equals("no")){
+                    GameRunner.gameOver = true;
+                    GameRunner.advancedMode = false;
+                    UI.printL();
+                    return false;
+                }
+            }
+            GameRunner.gameOver = true;
+            GameRunner.advancedMode = false;
+            UI.printL();
+            return false;
+        }
     }
     
 }

@@ -36,53 +36,39 @@ public class PropertyTile extends Tile{
     public void action(Player p) {
 
         if(!owend){
-            if(p.check(price)){
+            if(p.check(price, null)){
                 owend = true;
                 owendBy = p;
                 icon.newOwner(p.getSymbol());
                 doubleRent();
                 TileManeger.tiles[partnerLocation].doubleRent();
                 p.buyTile();
-            }else{
-                int temp = p.getWallet();
-                p.deposit(-temp);
-                p.lose();
             }
         }else if(p != owendBy){
-            if(p.check(rent)){
-                owendBy.deposit(rent);
-                p.payedRent();
-            }else{
-                int temp = p.getWallet();
-                p.deposit(-temp);
-                owendBy.deposit(temp);
-                p.lose();
-            }
+            p.check(rent, owendBy);
         }
     }
 
     @Override
     public void buyFromPlayer(Player p){
-
-        if(p.check(price)){
-            owendBy.deposit(price);
+        if(p != null){
             owendBy = p;
             icon.newOwner(p.getSymbol());
             doubleRent();
             TileManeger.tiles[partnerLocation].doubleRent();
-            p.buyTile();
         }else{
-            int temp = p.getWallet();
-            p.deposit(-temp);
-            owendBy.deposit(temp);
-            p.lose();
+            owend = false;
+            owendBy = TileManeger.canBuy;
         }
-
     }
 
     @Override
     public Player getOwendBy() {
         return owendBy;
+    }
+
+    public int getPrice(){
+        return price;
     }
     
 }

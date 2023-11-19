@@ -11,7 +11,7 @@ public class GameRunner {
     static int nrOfPlayers = 2;
     public static Player[] players;
     static int startValue = 20;
-    static boolean advancedMode; 
+    public static boolean advancedMode;
     static int turn = 0;
     static boolean gameOver;
     public static Scanner scanner = new Scanner(System.in);
