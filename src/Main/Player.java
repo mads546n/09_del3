@@ -163,7 +163,9 @@ public class Player {
             return lose(amount, p);
         } else {
             wallet = wallet - amount;
-            p.deposit(amount);
+            if(p != null){
+                p.deposit(amount);
+            }
             return true;
         }
     }
