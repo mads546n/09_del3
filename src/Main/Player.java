@@ -270,5 +270,15 @@ public class Player {
             return false;
         }
     }
+
+    //FOR TEST
+    public void setDie(Die testDie){
+        die = testDie;
+    }
+
+    //FOR TEST
+    public boolean getChanceOnNext(){
+        return chanceOnNextTurn;
+    }
     
 }

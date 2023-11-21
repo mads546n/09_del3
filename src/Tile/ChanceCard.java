@@ -475,4 +475,16 @@ public class ChanceCard {
         }
         return r;
     }
+
+    //FOR TEST
+    public static int[] getOrder(){
+        return order;
+    }
+
+    //FOR TEST
+    public static void setOrder(int[] input){
+        for(int i = 0; i < 20; i++){
+            order[i] = input[i];
+        }
+    }
 }
