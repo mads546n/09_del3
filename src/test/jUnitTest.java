@@ -116,18 +116,32 @@ public class jUnitTest {
         assertFalse(GameRunner.players[2].getChanceOnNext());
     }
 
+    @Test
+    public void testGame(){
+        setupGameOne();
+        for(int i = 0; i < 64; i++){
+            GameRunner.players[i%4].roll();
+        }
+    }
+
     public void setupGameOne(){ 
         GameRunner.players = new Player[4];
         GameRunner.players[0] = new Player('D', 16);
         GameRunner.players[1] = new Player('C', 16);
         GameRunner.players[2] = new Player('R', 16);
         GameRunner.players[3] = new Player('B', 16);
-        int[] testDieList = {1,2,3,4,5,6,1,2,3,4,5,6};
-        TestDie testDie = new TestDie(testDieList);
-        GameRunner.players[0].setDie(testDie);
-        GameRunner.players[1].setDie(testDie);
-        GameRunner.players[2].setDie(testDie);
-        GameRunner.players[3].setDie(testDie);
+        int[] testDieListPl1 = {1,2,3,4,5,6,1,2,3,4,5,6,1,2,3,4,5,6};
+        int[] testDieListPl2 = {1,2,3,4,5,6,1,2,3,4,5,6,1,2,3,4,5,6};
+        int[] testDieListPl3 = {1,2,3,4,5,6,1,2,3,4,5,6,1,2,3,4,5,6};
+        int[] testDieListPl4 = {1,2,3,4,5,6,1,2,3,4,5,6,1,2,3,4,5,6};
+        TestDie testDiePl1 = new TestDie(testDieListPl1);
+        TestDie testDiePl2 = new TestDie(testDieListPl2);
+        TestDie testDiePl3 = new TestDie(testDieListPl3);
+        TestDie testDiePl4 = new TestDie(testDieListPl4);
+        GameRunner.players[0].setDie(testDiePl1);
+        GameRunner.players[1].setDie(testDiePl2);
+        GameRunner.players[2].setDie(testDiePl3);
+        GameRunner.players[3].setDie(testDiePl4);
         GameRunner.advancedMode = true;
         int[] chanceOder = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19};
         ChanceCard.setOrder(chanceOder);
