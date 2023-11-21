@@ -6,8 +6,8 @@ import Tile.TileManeger;
 
 public class UI {
 
-    private static final String[] text = {"Welcome to monopoly. You can play with 2 to 4 players, how many players are playing?", "Player 1 what charektor do you wanna be? The charektors are dog, cat, racecar and boat", "Player 2 what charektor do you wanna be?", "Player 3 what charektor do you wanna be?", "Player 4 what charektor do you wanna be?", "oh oh that diddnt work", "Do you want to run the game in Advanced Mode?", "Now running the game in Advanced Mode", "Now running the game in Regular Mode","You have passed start and get 2M","You now own this Tile","You gatta pay rent", "You use your get out of jail free card", "You payed 1M to get out of jail", "You went to jail", "There is a tie so now we will count the value of your propetys in the final balance"};
-    private static final String[] chanceCard = {"C1: This card applys to the Racecar if you are not the Racecar you will get a new change card, if the Racecar isnt in the game the card will aply to you: On youre next turn you will move to the closest unsold tile and buy it, if all tiles are sold you will move to the closest tile and buy it from the owner", "C2: Move to START", "C3: Move op to 5 tiles, how many tiles do you wanna move?", "C4: You can move to tile 11 or 12, witch would you like to move to?", "C5: You can move one tile or you can take another chancecard, do you take the card?", "C6: This card applys to the Boat if you are not the Boat you will get a new change card, if the Boat isnt in the game the card will aply to you: On youre next turn you will move to the closest unsold tile and buy it, if all tiles are sold you will move to the closest tile and buy it from the owner", "C7: You ate to much candy, you gatta pay 2M", "C8: You can move to tile 11, 12, 20 or 21, witch would you like to move to?", "C9: You can move to tile 5 or 6, witch would you like to move to?", "C10: You get a get out of jail free card you can use for later", "C11: You move to the beach", "C12: This card applys to the Cat if you are not the Cat you will get a new change card, if the Cat isnt in the game the card will aply to you: On youre next turn you will move to the closest unsold tile and buy it, if all tiles are sold you will move to the closest tile and buy it from the owner", "C13: This card applys to the Dog if you are not the Dog you will get a new change card, if the Dog isnt in the game the card will aply to you: On youre next turn you will move to the closest unsold tile and buy it, if all tiles are sold you will move to the closest tile and buy it from the owner", "C14: its your birthday you get 1M from each player", "C15: You can move to tile 8, 9, 23 or 24, witch would you like to move to?", "C16: you have done all your homework, you get 2M", "C17: You can move to tile 14 or 15, witch would you like to move to?", "C18: Move to the skatepark if no one owns it you get it for free", "C19: You can move to tile 5, 6, 14 or 15, witch would you like to move to?", "C20: You can move to tile 2, 3, 17 or 18, witch would you like to move to?", "You recived a chance card last raound, that means you can now move to any propety tile that isnt already owned, if all propertys are owend you can move to any propety and buy it from the owner. What tile would you like to move to?"};
+    private static final String[] text = {"Welcome to Monopoly! You can play as 2 up to 4 players. How many players are playing?", "Player 1 what character do you wish to play as? The available characters are as following: Dog, Cat, Racecar and Boat", "Player 2 what character do you wish to play as?", "Player 3 what chararacter do you wish to play as?", "Player 4 what chararacter do you wanna play as?", "Oh oh that didn't work!", "Do you want to run the game in Advanced Mode?", "Now running the game in Advanced Mode", "Now running the game in Regular Mode","You have passed the Start-tile and receive 2M!","You now own this tile","You must pay rent", "You used your Get-out-of-jail-free-card", "You have payed 1M to get out of jail", "You went to jail", "The game has ended in a tie. Now the value of your properties will be counted and added to your final balance!"};
+    private static final String[] chanceCard = {"C1: This card applies only to the Racecar. If you are not the Racecar, you will receive a new Chance Card, if the Racecar isn't in the ongoing game then the Chance Card will apply to you: On your next turn, you will move to the closest available tile and buy it. If no tiles are available you will move to the closest tile and buy it off the owner", "C2: Move to START", "C3: Move up to 5 tiles, how many tiles do you wanna move?", "C4: You can move to tile 11 or 12, which would you like to move to?", "C5: You can either move a single tile forward or take another Chance Card, do you pull another card?", "C6: This card applies to the Boat. If you are not the Boat then you will get to pull a new Chance Card, if the Boat isn't in the game then the card will aply to you: On your next turn, you will move to the closest available tile and buy it. If no tiles are available you will move to the closest tile and buy it off the owner", "C7: You have eaten too much candy, you must now pay 2M", "C8: You can move to tile 11, 12, 20 or 21, which would you like to move to?", "C9: You can move to tile 5 or 6, which would you like to move to?", "C10: You get a Get-out-of-jail-free-card, that you can use for later", "C11: You move to the Beach", "C12: This card applies to the Cat. If you are not the Cat, then you will get a new Chance Card. If the Cat isn't in the game then the card will apply to you: On your next turn you will move to the available tile and buy it. If no tiles are available, you will move to the closest tile and buy it off the owner", "C13: This card applies to the Dog. If you are not the Dog you will receive a new Chance Card. If the Dog isn't in the game the card will apply to you: On your next turn you will move to the closest available tile and buy it. If no tiles are available then you will move to the closest tile and buy it off the owner", "C14: it's your birthday! You collect 1M from each player", "C15: You can move to tile 8, 9, 23 or 24. Which would you like to move to?", "C16: You have finished all of your homework! You receive 2M", "C17: You can move to tile 14 or 15. Which would you like to move to?", "C18: Move to the Skatepark. If the tile is available you'll acquire it for free!", "C19: You can move to tile 5, 6, 14 or 15. Which would you like to move to?", "C20: You can move to tile 2, 3, 17 or 18. Which would you like to move to?", "You received a Chance Card last round, that means you can now move to any property tile that isn't already owned. If all properties are unavailable, you can move to any property and buy it off the owner. What tile would you like to move to?"};
 
     public static void print(int x){
         System.out.println(text[x]);
@@ -15,13 +15,13 @@ public class UI {
 
     public static void printL(Player t, Player p){
         if(!GameRunner.advancedMode){
-            System.out.println(t.getName()+" You cant pay and you lose");
+            System.out.println(t.getName()+" You can't pay your rent and you lose!");
         }else{
             String b = "The Bank";
             if(p != null){
                 b = p.getName();
             }
-            System.out.println(t.getName()+" You dont have money to pay!! You owe money to "+b+". Do you wanna sell some propety to make up the money?");
+            System.out.println(t.getName()+" You don't have money to pay! You owe money to "+b+". Do you want to sell a propety to make the money?");
         }
     }
 
@@ -30,12 +30,12 @@ public class UI {
     }
 
     public static void owe(int x){
-        System.out.println("You owe "+x+"M, write the the number of the tile you would like to sell");
+        System.out.println("You owe "+x+"M, write the the number of the tile that you would like to sell");
     }
 
     public static void print(Player p){
         String name = p.getName();
-        System.out.println(name+" Your turn to roll, write 'roll'");
+        System.out.println(name+" It's your turn to roll, write 'roll'");
     }
 
     public static void printDieRoll(int i){
@@ -57,7 +57,7 @@ public class UI {
             printPlayer(GameRunner.players[i]);
             System.out.println();
         }
-        System.out.println("We still have a tie!! A "+(w[1]+1)+" way tie!!");
+        System.out.println("We have a tie! A "+(w[1]+1)+"-way tie!!");
     }
 
     public static void printPlayer(Player p){
