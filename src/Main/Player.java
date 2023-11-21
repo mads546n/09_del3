@@ -222,7 +222,9 @@ public class Player {
         UI.printBord();
         UI.printL(this, p);
         if(!GameRunner.advancedMode){
-            p.deposit(wallet);
+            if(p != null){
+                p.deposit(wallet);
+            }
             wallet = 0;
             GameRunner.gameOver = true;
             return false;

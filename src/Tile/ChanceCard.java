@@ -52,7 +52,7 @@ public class ChanceCard {
             loop:
             for(int i = 0; i < GameRunner.players.length+1; i++){
 
-                if(i > GameRunner.players.length){
+                if(i == GameRunner.players.length){
                     p.setChance(0);
                     break loop;
                 }
