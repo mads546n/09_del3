@@ -1,6 +1,7 @@
-package test;
+package Test;
 
 import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.File;
 import java.util.Scanner;
@@ -39,7 +40,18 @@ public class jUnitTest {
 
     }
 
+    @Test
+    public void testCheckInNormal(){
+        GameRunner.advancedMode = false;
+        GameRunner.players = new Player[4];
+        GameRunner.players[0] = new Player('D', 16);
+        GameRunner.players[0].check(20, null);
+
+        assertEquals(0, GameRunner.players[0].getWallet());
+    }
+
     public void setupGameOne(){ 
+        GameRunner.players = new Player[4];
         GameRunner.players[0] = new Player('D', 16);
         GameRunner.players[1] = new Player('C', 16);
         GameRunner.players[2] = new Player('R', 16);
