@@ -202,7 +202,55 @@ public class jUnitTest {
         assertFalse(GameRunner.players[2].getChanceOnNext());
     }
 
-    
+    @Test
+    public void ChanceTest4(){
+        GameRunner.players = new Player[1];
+        GameRunner.players[0] = new Player('D', 16);
+        int[] chanceOder = {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+        ChanceCard.setOrder(chanceOder);
+        GameRunner.players[0].roll(3);
+        assertEquals(18, GameRunner.players[0].getWallet());
+        assertEquals(0, GameRunner.players[0].getLocation());
+    }
+
+    @Test
+    public void ChanceTest5(){
+        GameRunner.players = new Player[1];
+        GameRunner.players[0] = new Player('D', 16);
+        int[] chanceOder = {6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+        ChanceCard.setOrder(chanceOder);
+        GameRunner.players[0].roll(3);
+        assertEquals(14, GameRunner.players[0].getWallet());
+    }
+
+    @Test
+    public void ChanceTest6(){
+        GameRunner.players = new Player[1];
+        GameRunner.players[0] = new Player('D', 16);
+        int[] chanceOder = {10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+        ChanceCard.setOrder(chanceOder);
+        GameRunner.players[0].roll(3);
+        assertEquals(13, GameRunner.players[0].getLocation());
+        assertEquals(13, GameRunner.players[0].getWallet());
+    }
+
+    @Test
+    public void ChanceTest7(){
+        GameRunner.players = new Player[1];
+        GameRunner.players[0] = new Player('D', 16);
+        int[] chanceOder = {7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+        ChanceCard.setOrder(chanceOder);
+        File file = new File("testChanceNr7.txt");
+        try {
+            GameRunner.scanner = new Scanner(file);
+            GameRunner.scanner.useLocale(java.util.Locale.ENGLISH);
+        } catch (Exception e) {
+            System.out.println("STOP: file testChanceNr7 dont exist");
+        }
+        GameRunner.players[0].roll(3);
+        assertEquals(20, GameRunner.players[0].getLocation());
+        assertEquals(16, GameRunner.players[0].getWallet());
+    }
 
     public void setupGameOne(){ 
         GameRunner.players = new Player[4];
