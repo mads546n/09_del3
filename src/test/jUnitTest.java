@@ -109,6 +109,50 @@ public class jUnitTest {
 
         assertEquals(0, GameRunner.players[0].getWallet());
         assertEquals(0, GameRunner.players[1].getWallet());
+
+        assertTrue(TileManeger.tiles[1].getOwendBy() == GameRunner.players[1]);
+        assertTrue(TileManeger.tiles[4].getOwendBy() == GameRunner.players[1]);
+        assertTrue(TileManeger.tiles[7].getOwendBy() == GameRunner.players[1]);
+        assertTrue(TileManeger.tiles[11].getOwendBy() == GameRunner.players[1]);
+        assertTrue(TileManeger.tiles[13].getOwendBy() == GameRunner.players[1]);
+        assertTrue(TileManeger.tiles[19].getOwendBy() == GameRunner.players[1]);
+        assertTrue(TileManeger.tiles[22].getOwendBy() == GameRunner.players[1]);
+        assertTrue(TileManeger.tiles[23].getOwendBy() == GameRunner.players[1]);
+        
+    }
+
+    @Test
+    public void testCheckInAdvance3(){
+        GameRunner.advancedMode = true;
+        GameRunner.players = new Player[1];
+        GameRunner.players[0] = new Player('D', 13);
+        File file = new File("testCheckAdvance2.txt");
+        try {
+            GameRunner.scanner = new Scanner(file);
+            GameRunner.scanner.useLocale(java.util.Locale.ENGLISH);
+        } catch (Exception e) {
+            System.out.println("STOP: file testCheckAdvance2 dont exist");
+        }
+        
+        TileManeger.tiles[1].action(GameRunner.players[0]);
+        TileManeger.tiles[4].action(GameRunner.players[0]);
+        TileManeger.tiles[7].action(GameRunner.players[0]);
+        TileManeger.tiles[11].action(GameRunner.players[0]);
+        TileManeger.tiles[13].action(GameRunner.players[0]);
+        TileManeger.tiles[19].action(GameRunner.players[0]);
+
+        assertEquals(0, GameRunner.players[0].getWallet());
+
+        assertTrue(TileManeger.tiles[1].getOwendBy() == GameRunner.players[0]);
+        assertTrue(TileManeger.tiles[4].getOwendBy() == GameRunner.players[0]);
+        assertTrue(TileManeger.tiles[7].getOwendBy() == GameRunner.players[0]);
+        assertTrue(TileManeger.tiles[11].getOwendBy() == GameRunner.players[0]);
+        assertTrue(TileManeger.tiles[13].getOwendBy() == GameRunner.players[0]);
+        assertTrue(TileManeger.tiles[19].getOwendBy() == GameRunner.players[0]);
+
+        GameRunner.players[0].check(10, null);
+
+        assertEquals(3, GameRunner.players[0].getWallet());
         
     }
 
