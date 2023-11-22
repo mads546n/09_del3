@@ -232,7 +232,7 @@ public class Player {
             int assets = wallet;
             wallet = 0;
             if(p != null){
-                p.deposit(amount);
+                p.deposit(wallet);
             }
             String strInput;
             int intInput;

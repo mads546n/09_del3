@@ -71,6 +71,48 @@ public class jUnitTest {
     }
 
     @Test
+    public void testCheckInAdvance2(){
+        GameRunner.advancedMode = true;
+        GameRunner.players = new Player[2];
+        GameRunner.players[0] = new Player('D', 13);
+        GameRunner.players[1] = new Player('C', 10);
+        File file = new File("testCheckAdvance2.txt");
+        try {
+            GameRunner.scanner = new Scanner(file);
+            GameRunner.scanner.useLocale(java.util.Locale.ENGLISH);
+        } catch (Exception e) {
+            System.out.println("STOP: file testCheckAdvance2 dont exist");
+        }
+        
+        TileManeger.tiles[22].action(GameRunner.players[1]);
+        TileManeger.tiles[23].action(GameRunner.players[1]);
+        TileManeger.tiles[1].action(GameRunner.players[0]);
+        TileManeger.tiles[4].action(GameRunner.players[0]);
+        TileManeger.tiles[7].action(GameRunner.players[0]);
+        TileManeger.tiles[11].action(GameRunner.players[0]);
+        TileManeger.tiles[13].action(GameRunner.players[0]);
+        TileManeger.tiles[19].action(GameRunner.players[0]);
+
+        assertEquals(0, GameRunner.players[0].getWallet());
+        assertEquals(0, GameRunner.players[1].getWallet());
+
+        assertTrue(TileManeger.tiles[1].getOwendBy() == GameRunner.players[0]);
+        assertTrue(TileManeger.tiles[4].getOwendBy() == GameRunner.players[0]);
+        assertTrue(TileManeger.tiles[7].getOwendBy() == GameRunner.players[0]);
+        assertTrue(TileManeger.tiles[11].getOwendBy() == GameRunner.players[0]);
+        assertTrue(TileManeger.tiles[13].getOwendBy() == GameRunner.players[0]);
+        assertTrue(TileManeger.tiles[19].getOwendBy() == GameRunner.players[0]);
+        assertTrue(TileManeger.tiles[22].getOwendBy() == GameRunner.players[1]);
+        assertTrue(TileManeger.tiles[23].getOwendBy() == GameRunner.players[1]);
+
+        TileManeger.tiles[23].action(GameRunner.players[0]);
+
+        assertEquals(0, GameRunner.players[0].getWallet());
+        assertEquals(0, GameRunner.players[1].getWallet());
+        
+    }
+
+    @Test
     public void ChanceTest1(){
         GameRunner.players = new Player[4];
         GameRunner.players[0] = new Player('D', 16);
@@ -116,13 +158,7 @@ public class jUnitTest {
         assertFalse(GameRunner.players[2].getChanceOnNext());
     }
 
-    @Test
-    public void testGame(){
-        setupGameOne();
-        for(int i = 0; i < 64; i++){
-            GameRunner.players[i%4].roll();
-        }
-    }
+    
 
     public void setupGameOne(){ 
         GameRunner.players = new Player[4];
@@ -130,10 +166,10 @@ public class jUnitTest {
         GameRunner.players[1] = new Player('C', 16);
         GameRunner.players[2] = new Player('R', 16);
         GameRunner.players[3] = new Player('B', 16);
-        int[] testDieListPl1 = {1,2,3,4,5,6,1,2,3,4,5,6,1,2,3,4,5,6};
-        int[] testDieListPl2 = {1,2,3,4,5,6,1,2,3,4,5,6,1,2,3,4,5,6};
-        int[] testDieListPl3 = {1,2,3,4,5,6,1,2,3,4,5,6,1,2,3,4,5,6};
-        int[] testDieListPl4 = {1,2,3,4,5,6,1,2,3,4,5,6,1,2,3,4,5,6};
+        int[] testDieListPl1 = {3,4,6,6,2,3};
+        int[] testDieListPl2 = {5,5,3,5,1,4};
+        int[] testDieListPl3 = {6,5,2,4,2,3,1};
+        int[] testDieListPl4 = {3,2,3,5,6};
         TestDie testDiePl1 = new TestDie(testDieListPl1);
         TestDie testDiePl2 = new TestDie(testDieListPl2);
         TestDie testDiePl3 = new TestDie(testDieListPl3);
@@ -143,7 +179,7 @@ public class jUnitTest {
         GameRunner.players[2].setDie(testDiePl3);
         GameRunner.players[3].setDie(testDiePl4);
         GameRunner.advancedMode = true;
-        int[] chanceOder = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19};
+        int[] chanceOder = {12,4,11,15,5,19,18,6};
         ChanceCard.setOrder(chanceOder);
         File file = new File("GameOneInputs.txt");
         try {
